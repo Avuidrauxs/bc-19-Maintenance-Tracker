@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/Avuidrauxs/bc-19-Maintenance-Tracker/issues"
   },
-  "homepage": "https://github.com/Avuidrauxs/bc-19-Maintenance-Tracker#readme"
+  "homepage": "https://github.com/Avuidrauxs/bc-19-Maintenance-Tracker#readme",
+  "dependencies": {
+    "express": "^4.14.1",
+    "firebase": "^3.6.9",
+    "hbs": "^4.0.1"
+  }
 }
