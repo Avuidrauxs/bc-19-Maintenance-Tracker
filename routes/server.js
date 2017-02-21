@@ -11,11 +11,11 @@ app.set('view engine','hbs');
 //set middleware for routing
 app.use(express.static(__dirname+'/'));
 
-app.use(function(req,res,next){
-
-    res.render('pages/blank.hbs');
-
-});
+// app.use(function(req,res,next){
+//
+//     res.render('pages/blank.hbs');
+//
+// });
 //routing to pages
 
 app.get('/',function (req,res) {
@@ -27,14 +27,14 @@ app.get('/',function (req,res) {
   });
 });
 
-app.get('/login',function (req,res) {
-  res.render('pages/login.hbs');
-});
-
-
-app.get('/blank',function (req,res) {
-  res.render('pages/blank.hbs');
-});
+// app.get('/login',function (req,res) {
+//   res.render('pages/login.hbs');
+// });
+//
+//
+// app.get('/blank',function (req,res) {
+//   res.render('pages/blank.hbs');
+// });
 
 app.listen(2002,function () {
   console.log("Runnning on port : 2002");

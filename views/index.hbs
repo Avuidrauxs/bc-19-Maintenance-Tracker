@@ -1,0 +1,65 @@
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+			  src="https://code.jquery.com/jquery-3.1.1.min.js"
+			  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+			  crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Form control: input</h2>
+    <p>The form below contains two input elements; one of type text and one of type password:</p>
+    <form>
+      <div class="form-group">
+        <label for="usr">Name:</label>
+        <input type="text" class="form-control" id="usr">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Date:</label>
+        <input class="datepicker" data-date-format="mm/dd/yyyy">
+      </div>
+      <div class="form-group">
+        <label for="usr">Repairer ID:</label>
+        <input type="text" class="form-control" id="usr">
+      </div>
+      <div class="form-group">
+   <label for="sel1">Priorty:</label>
+   <select class="form-control" id="prior">
+     <option>High</option>
+     <option>Medium</option>
+     <option>Low</option>
+
+   </select>
+ </div>
+      <div class="form-group">
+      <label class="radio-inline"><input type="radio" name="maintenance" id="radio_request">Maintenance</label> &nbsp or&nbsp
+<label class="radio-inline"><input type="radio" name="repairs">Repair</label>
+</div>
+
+
+     <div class="form-group">
+     <label class="radio-inline"><input type="radio" name="optradio" id="radio_available">Available</label> &nbsp or&nbsp
+<label class="radio-inline"><input type="radio" name="not_availble">Not Available</label>
+</div>
+<div class="form-group">
+<button type="button" class="btn btn-success">Success</button>
+</div>
+
+    </form>
+  </div>
+
+
+</body>
+
+
+</html>
