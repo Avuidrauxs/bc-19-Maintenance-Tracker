@@ -21,7 +21,8 @@ app.use(express.static(__dirname+'/'));
 app.get('/',function (req,res) {
   res.render('index.hbs',{
 
-    name: "Audax Main Dashboard"
+    name: "Audax Main Dashboard",
+    username : 'Audax' || 'User'
 
 
   });
