@@ -1,10 +1,21 @@
 const express = require('express');
 const hbs = require('hbs');
+const fire = require('./lib/firebase');
 
 var app = express();
 
 //registering partials
 hbs.registerPartials(__dirname + '/views/partials');
+
+//registr helper to run functions
+hbs.registerHelper('randomize100',function () {
+  return randomize100();
+
+});
+hbs.registerHelper('getTotalMaintenance',function () {
+  //return randomize100();
+  return fire.getTotalMaintenance();
+});
 //set engine for template viewing
 app.set('view engine','hbs');
 
@@ -50,3 +61,7 @@ app.get('/add_new_user',function (req,res) {
 app.listen(2009,function () {
   console.log("Runnning on port : 2009");
 });
+
+function randomize100() {
+  return Math.floor(Math.random() * 10);
+}
