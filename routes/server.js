@@ -11,11 +11,11 @@ app.set('view engine','hbs');
 //set middleware for routing
 app.use(express.static(__dirname+'/'));
 
-// app.use(function(req,res,next){
-//
-//     res.render('pages/blank.hbs');
-//
-// });
+app.use(function(req,res,next){
+
+    res.render('pages/blank.hbs');
+
+});
 //routing to pages
 
 app.get('/',function (req,res) {
