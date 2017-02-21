@@ -1,4 +1,4 @@
-function Users(firstname,lastname,username,passkey,email,role,presence){
+function Users(firstname,lastname,username,passkey,email,role,presence,phone,uid){
 
   this.firstname = firstname;
   this.lastname = lastname;
@@ -6,7 +6,9 @@ function Users(firstname,lastname,username,passkey,email,role,presence){
   this.passkey = passkey;
   this.email = email;
   this.role = role || "staff";
-  this.presence = presence || true;
+  this.presence = presence;
+  this.phone = phone;
+  this.uid = uid;
 
 }
 
