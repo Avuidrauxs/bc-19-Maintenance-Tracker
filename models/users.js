@@ -27,3 +27,7 @@ Users.prototype.signOut = function(callback){
 
 
 }
+
+module.exports = {
+  Users
+}
