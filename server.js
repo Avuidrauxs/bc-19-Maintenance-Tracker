@@ -37,6 +37,16 @@ app.get('/blank',function (req,res) {
   res.render('pages/blank.hbs');
 });
 
-app.listen(2005,function () {
-  console.log("Runnning on port : 2002");
+app.get('/add_new_user',function (req,res) {
+  res.render('pages/forms.hbs',{
+
+    name: "Audax Main Dashboard",
+    username : 'Audax' || 'User'
+
+
+  });
+});
+
+app.listen(2009,function () {
+  console.log("Runnning on port : 2009");
 });

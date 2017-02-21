@@ -54,7 +54,7 @@
             {{> nav_bar_right}}
   <!-- /.navbar-top-links -->
 {{> nav_sidebar}}
-
+        <!--HIDDIN DISMISSABLE -->
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -72,7 +72,7 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><span id="pending_total">26</span></div>
+                                    <div class="huge"><p id="pending_total">26</p></div>
                                     <div>Pending Requests</div>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                                     <i class="fa fa-shopping-cart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><span id="repair_total">124</div>
+                                    <div class="huge"><span id="repair_total">124</span></div>
                                     <div>Repair Requests</div>
                                 </div>
                             </div>
@@ -154,115 +154,117 @@
                 </div>
             </div>
             <!-- /.row -->
+
             <div class="row">
+  </div>
+
+
+              <div class="row">
+
+                <div class="col-lg-6">
+                      <div class="panel panel-default">
+                          <div class="panel-heading">
+                              Pending Maintenance and Repairs
+                          </div>
+                          <!-- /.panel-heading -->
+                          <div class="panel-body">
+                              <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="increasePending()">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <button type="button" class="close" data-dismiss="" aria-hidden="">&times;</button>
+                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                              </div>
+                              <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <button type="button" class="close" data-dismiss="" aria-hidden="">&times;</button>
+                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                              </div>
+                              <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <button type="button" class="close" data-dismiss="" aria-hidden="">&times;</button>
+                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                              </div>
+                              <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                  <button type="button" class="close" data-dismiss="" aria-hidden="">&times;</button>
+                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                              </div>
+                          </div>
+                          <!-- .panel-body -->
+                      </div>
+                      <!-- /.panel -->
+                      <div class="row">
+                          <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div hidden class="panel-heading">
+                                    Dismissable Alerts
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div hidden class="panel-body">
+                                    <div class="alert alert-warning alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                                    </div>
+                                    <div class="alert alert-warning alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                                    </div>
+                                    <div class="alert alert-warning alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="" aria-hidden="true"></button>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                                    </div>
+                                    <div class="alert alert-warning alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                                    </div>
+                                  </div>
+                                  <!-- .panel-body -->
+                              </div>
+                              <!-- /.panel -->
+                          </div>
+                  </div>
+
+                  <!-- /.col-lg-6 -->
+              </div>
+
+
+
+            <div class="row">
+
               <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Dismissable Alerts
+                            Unresolved
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="alert alert-success alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
-                            </div>
-                            <div class="alert alert-info alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
-                            </div>
-                            <div class="alert alert-warning alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
-                            </div>
-                            <div class="alert alert-danger alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
-                            </div>
+                          <div class="alert alert-warning alert-dismissable">
+
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                          </div>
+                          <div class="alert alert-warning alert-dismissable">
+
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                          </div>
+                          <div class="alert alert-warning alert-dismissable">
+
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                          </div>
+                          <div class="alert alert-warning alert-dismissable">
+
+                              Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+                          </div>
                         </div>
                         <!-- .panel-body -->
                     </div>
-                    <!-- /.panel -->
-                    <div class="row">
-                        <div class="col-lg-6">
-                          <div class="panel panel-default">
-                              <div class="panel-heading">
-                                  Dismissable Alerts
-                              </div>
-                              <!-- /.panel-heading -->
-                              <div class="panel-body">
-                                  <div class="alert alert-success alert-dismissable">
-                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
-                                  </div>
-                                  <div class="alert alert-info alert-dismissable">
-                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
-                                  </div>
-                                  <div class="alert alert-warning alert-dismissable">
-                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
-                                  </div>
-                                  <div class="alert alert-danger alert-dismissable">
-                                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
-                                  </div>
-                                </div>
-                                <!-- .panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                </div>
+                    </div>
 
                 <!-- /.col-lg-6 -->
             </div>
             <!-- /.row -->
-
-
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Modals
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <!-- Button trigger modal -->
-                                    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                                        Launch Demo Modal
-                                    </button>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                            <!-- /.modal-content -->
-                                        </div>
-                                        <!-- /.modal-dialog -->
-                                    </div>
-                                    <!-- /.modal -->
-                                </div>
-                                <!-- .panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                <!-- /.col-lg-8 -->
-
-                <!-- /.col-lg-4 -->
-            </div>
-            <!-- /.row -->
+  <!-- /.row -->
         </div>
+
+ </div>
         <!-- /#page-wrapper -->
 
     </div>
@@ -284,6 +286,21 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="views/dist/js/sb-admin-2.js"></script>
+  <script>
+  function showForm() {
+    var x = document.getElementById('reqForm');
+
+        x.style.display = 'block';
+      }
+
+        function increasePending() {
+          var p = document.getElementById('pending_total');
+          var sum = p.innerHTML ;
+          p.innerHTML = --sum;
+        }
+
+
+</script>
 
 </body>
 
