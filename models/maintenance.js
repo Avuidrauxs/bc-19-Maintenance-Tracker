@@ -1,9 +1,9 @@
-function Maintenance(id,title,datetime,repairer_id,priorty,type,active,comments,imgURL){
+function Maintenance(id,title,datetime,repairer_name,priorty,type,active,comments,imgURL){
 
     this.id = id;
     this.title = title;
     this.datetime = datetime;
-    this.repairer_id = repairer_id;
+    this.repairer_name = repairer_name;
     this.priorty = priorty;
     this.type = type;
     this.active = active;

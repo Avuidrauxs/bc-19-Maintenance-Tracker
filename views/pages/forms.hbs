@@ -3,29 +3,33 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Maintenance tracker</title>
+  <title>Maintenance tracker</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="views/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Core CSS -->
+  <link href="views/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- MetisMenu CSS -->
-    <link href="views/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+  <!-- MetisMenu CSS -->
+  <link href="views/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="views/dist/css/sb-admin-2.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="views/dist/css/sb-admin-2.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
-    <link href="views/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom Fonts -->
+  <link href="views/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- ... -->
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+  <link rel="stylesheet" href="views/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="views/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -34,246 +38,249 @@
 
 <body>
 
-    <div id="wrapper">
-      <!-- Navigation -->
-      <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0" >
-          <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-              </button>
-              {{> nav_title}}
-          </div>
-          <!-- /.navbar-header -->
-          {{> nav_bar_right}}
-  <!-- /.navbar-top-links -->
-  {{> nav_sidebar}}
+  <div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        {{> nav_title}}
+      </div>
+      <!-- /.navbar-header -->
+      {{> nav_bar_right}}
+      <!-- /.navbar-top-links -->
+      {{> nav_sidebar}}
       <!--HIDDIN DISMISSABLE -->
 
-        <!-- Navigation -->
-        <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Forms</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-sm-12" id="createRequest" {{main_form_visibility}}>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Create New Request
-                        </div>
-                        <div class="panel-body">
-                            <div class="row"><!--I'M A BANANA -->
-                                <div class="col-lg-12">
-                                    <form role="form" action="/" method="POST">
-                                        <div class="form-group">
-                                            <label>Title</label>
-                                            <input class="form-control" placeholder="Enter Title">
-                                            <p class="help-block">Example block-level help text here.</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Lastname</label>
-                                            <input class="form-control" placeholder="Enter last name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Static Control</label>
-                                            <p class="form-control-static">email@example.com</p>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Upload Image</label>
-                                            <input type="file">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Comments</label>
-                                            <textarea class="form-control" rows="3"></textarea>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Priorty</label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>High
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">Normal
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3">Low
-                                            </label>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label>Type of request</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>Maintenance
-                                            </label>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">Request
-                                            </label>
-
-                                        </div>
-
-                                        </div>
-
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- /.row (nested) -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-12 -->
-
-
-                    <div class="col-sm-12" id="createUser" {{form_visibility}}>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Create New User
-                            </div>
-                            <div class="panel-body">
-                                <div class="row"><!--I'M A BANANA -->
-                                    <div class="col-lg-12">
-                                        <form role="form" action="/" method="POST">
-                                            <div class="form-group">
-                                                <label>Firstname</label>
-                                                <input class="form-control" placeholder="Enter First name">
-                                                <p class="help-block">Example block-level help text here.</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Lastname</label>
-                                                <input class="form-control" placeholder="Enter last name">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Static Control</label>
-                                                <p class="form-control-static">email@example.com</p>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Upload Image</label>
-                                                <input type="file">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Text area</label>
-                                                <textarea class="form-control" rows="3"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Checkboxes</label>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" value="">Checkbox 1
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" value="">Checkbox 2
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" value="">Checkbox 3
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Inline Checkboxes</label>
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox">1
-                                                </label>
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox">2
-                                                </label>
-                                                <label class="checkbox-inline">
-                                                    <input type="checkbox">3
-                                                </label>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Radio Buttons</label>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Radio 1
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio 2
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio 3
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Inline Radio Buttons</label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>1
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">2
-                                                </label>
-                                                <label class="radio-inline">
-                                                    <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3">3
-                                                </label>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Selects</label>
-                                                <select class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Multiple Selects</label>
-                                                <select multiple class="form-control">
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                </select>
-                                            </div>
-                                            <button type="submit" class="btn btn-default">Submit Button</button>
-                                            <button type="reset" class="btn btn-default">Reset Button</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <!-- /.row (nested) -->
-                            </div>
-                            <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-
-            </div>
-            <!-- /.row -->
+      <!-- Navigation -->
+      <div id="page-wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="page-header">Forms</h1>
+          </div>
+          <!-- /.col-lg-12 -->
         </div>
-        <!-- /#page-wrapper -->
+        <!-- /.row -->
+        <div class="row">
+          <div class="col-sm-12" id="createRequest" {{main_form_visibility}}>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                Create New Request
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <!--I'M A BANANA -->
+                  <div class="col-lg-12">
+                    <form role="form" action="/banana" method="POST">
+                      <div class="form-group">
+                        <label>ID #</label>
+                        <input class="form-control" placeholder="Enter Title" name="reqID" type="number" maxlength="4" size="4">
+                        <p class="help-block">Example 0001.</p>
+                      </div>
+                      <div class="form-group">
+                        <label>Title</label>
+                        <input class="form-control" placeholder="Enter Title" name="reqTitle">
+                        <p class="help-block">Example "John Dogo".</p>
+                      </div>
+                      <div class="form-group">
+                        <div class='input-group date' id='datetimepicker5'>
+                          <input type='text' class="form-control" name="reqDate" placeholder="MM/DD/YYYY" />
+                          <span class="input-group-addon">
+                                                   <span class="glyphicon glyphicon-calendar"></span>
+                          </span>
+                        </div>
+                      </div>
+                  </div>
+                  <script type="text/javascript">
+                    $(function() {
+                      $('#datetimepicker5').datetimepicker({
+                        defaultDate: "11/1/2013",
+                        disabledDates: [
+                          moment("12/25/2013"),
+                          new Date(2013, 11 - 1, 21),
+                          "11/22/2013 00:53"
+                        ]
+                      });
+                    });
+                  </script>
+                </div>
+                <div class="form-group">
+                  <label>Static Control</label>
+                  <p class="form-control-static">email@example.com</p>
+                </div>
+                <div class="form-group">
+                  <label>Upload Image</label>
+                  <input type="file" name="reqimgURL">
+                </div>
+                <div class="form-group">
+                  <label>Comments</label>
+                  <textarea class="form-control" rows="3" name="reqComment"></textarea>
+                </div>
 
-    </div>
-    <!-- /#wrapper -->
+                <div class="form-group">
+                  <label>Priorty</label>
+                  <label class="radio-inline">
+                    <input type="radio" name="reqPriorty" id="reqPriorty" value="high" checked>High
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="reqPriorty" id="reqPriorty" value="normal">Normal
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="reqPriorty" id="reqPriorty" value="low">Low
+                  </label>
+                </div>
+                <div class="form-group">
+                  <label>Select Repair Staff</label>
+                  <select class="form-control" id="staffSelect" onclick="loadStaff()">
+                    <option id="reqStaff">&nbsp;</option>
 
-    <!-- jQuery -->
-    <script src="views/vendor/jquery/jquery.min.js"></script>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Type of request</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <label class="radio-inline">
+                    <input type="radio" name="reqType" id="reqType" value="maintenance" checked>Maintenance
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="reqType" id="reqType" value="request">Request
+                  </label>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="views/vendor/bootstrap/js/bootstrap.min.js"></script>
+                </div>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="views/vendor/metisMenu/metisMenu.min.js"></script>
+              </div>
 
-    <!-- Custom Theme JavaScript -->
-    <script src="views/dist/js/sb-admin-2.js"></script>
+              <button type="submit" class="btn btn-default">Submit Button</button>
+              <button type="reset" class="btn btn-default">Reset Button</button>
+              </form>
+            </div>
+          </div>
+          <!-- /.row (nested) -->
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-12" id="createUser" {{form_visibility}}>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                Create New User
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <!--I'M A BANANA -->
+                  <div class="col-lg-12">
+                    <form role="form" action="/welcome" method="POST">
+                      <div class="form-group">
+                        <label>Firstname</label>
+                        <input class="form-control" name="fname" placeholder="Enter First name">
+                        <p class="help-block">Example "John"</p>
+                      </div>
+                      <div class="form-group">
+                        <label>Lastname</label>
+                        <input class="form-control" name="lname" placeholder="Enter last name">
+                      </div>
+                      <div class="form-group">
+                        <label>Username</label>
+                        <input class="form-control" name="uname" placeholder="Enter last name">
+                      </div>
+                      <div class="form-group">
+                        <label>Phone Number</label>
+                        <input class="form-control" name="phone" placeholder="Enter last name">
+                      </div>
+                      <div class="form-group">
+                        <label>Email</label>
+                        <input class="form-control" type="email" name="email" placeholder="Enter last name">
+                      </div>
+
+                      <div class="form-group">
+                        <label>Availability</label>
+                        <label class="radio-inline">
+                          <input type="radio" name="presence" id="presence" value=true checked>Yes
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="presence" id="presence" value=false>No
+                        </label>
+
+                      </div>
+
+                      <div class="form-group">
+                        <label>Role</label>
+                        <label class="radio-inline">
+                          <input type="radio" name="role" id="role" value="admin" checked>Admin
+                        </label>
+                        <label class="radio-inline">
+                          <input type="radio" name="role" id="role" value="staff">Repair Staff
+                        </label>
+
+                      </div>
+
+                      <button type="submit" class="btn btn-default">Submit Button</button>
+                      <button type="reset" class="btn btn-default">Reset Button</button>
+                    </form>
+                  </div>
+                </div>
+                <!-- /.row (nested) -->
+              </div>
+              <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+          </div>
+
+
+        </div>
+        <!-- /.panel-body -->
+      </div>
+      <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+
+  </div>
+  <!-- /.row -->
+  </div>
+  <!-- /#page-wrapper -->
+
+  </div>
+  <!-- /#wrapper -->
+
+  <!-- jQuery -->
+  <script src="views/vendor/jquery/jquery.js"></script>
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="views/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <!-- Metis Menu Plugin JavaScript -->
+  <script src="views/vendor/metisMenu/metisMenu.min.js"></script>
+
+  <!-- Custom Theme JavaScript -->
+  <script src="views/dist/js/sb-admin-2.js"></script>
+  <script type="text/javascript" src="views/bower_components/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="views/bower_components/moment/min/moment.min.js"></script>
+  <script type="text/javascript" src="views/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="views/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
+  <script>
+    function loadStaff() {
+
+      var cuisines = [{
+        {
+          allStaff
+        }
+      }];
+
+      var sel = document.getElementById('staffSelect');
+      for (var i = 0; i < cuisines.length; i++) {
+        var opt = document.createElement('option');
+        opt.innerHTML = cuisines[i];
+        opt.value = cuisines[i];
+        sel.appendChild(opt);
+      }
+    }
+  </script>
 
 </body>
 
