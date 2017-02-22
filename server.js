@@ -22,21 +22,17 @@ hbs.registerHelper('getTotalMaintenanceRepairs',function () {
 
   return fire.getTotalMaintenanceRepairs('maintenance');
 });
-var abb = [2,3,4,5,6];
-//abb = fire.getAvailableStaff();
-var bar = abb.filter(function (staff) {
-  return staff.active === true;
-});
+
 //Get total available repairmen
 hbs.registerHelper('getAvailableStaff',function () {
 
-  return bar.length
+  return fire.getAvailableStaff();
 });
 
-hbs.registerHelper('getPendingRequests',function () {
-
-  return fire.getPendingRequests();
-});
+// hbs.registerHelper('getPendingRequests',function () {
+//
+//   return fire.getPendingRequests();
+// });
 //set engine for template viewing
 app.set('view engine','hbs');
 
