@@ -1,5 +1,6 @@
 const express = require('express');
 const hbs = require('hbs');
+const fs = require('fs');
 
 const fire = require('./lib/firebase');
 
@@ -16,18 +17,104 @@ hbs.registerHelper('randomize100',function () {
 
 });
 
+//Gets total number of current pending maintenance
+hbs.registerHelper('getCurrentPendingMainte',function () {
 
-//Gets total number of requests
-hbs.registerHelper('getTotalMaintenanceRepairs',function () {
+  return getCurrentPendingMainte();
+});
 
-  return fire.getTotalMaintenanceRepairs('maintenance');
+//Get all maintenance requests
+hbs.registerHelper('getAllCurrentMaintenance',function () {
+
+  return getAllCurrentMaintenance();
 });
 
 //Get total available repairmen
-hbs.registerHelper('getAvailableStaff',function () {
+hbs.registerHelper('getCurrentAvailableStaff',function () {
 
-  return fire.getAvailableStaff();
+  return getCurrentAvailableStaff();
 });
+
+//Get total repair requests in view
+hbs.registerHelper('getAllCurrentRepairs',function () {
+
+  return getAllCurrentRepairs();
+});
+
+//Get all Repair requests
+function getAllCurrentRepairs(argument) {
+
+  var allRequest = [];
+  var notestring = fs.readFileSync('./assets/requests.json');
+  var bn = JSON.parse(notestring);
+
+
+  var aRequest = new maintenance.Maintenance();
+
+   allRequest = bn.filter(function (aRequest) {
+     return aRequest.active === true && aRequest.type === "repair";
+   });
+   //console.log(JSON.stringify(allStaff));
+   fire.getAllRequestsOffline();
+  return allRequest.length;
+}
+
+
+//get all Maintenance requests
+
+function getAllCurrentMaintenance() {
+
+    var allRequest = [];
+    var notestring = fs.readFileSync('./assets/requests.json');
+    var bn = JSON.parse(notestring);
+
+
+    var aRequest = new maintenance.Maintenance();
+
+     allRequest = bn.filter(function (aRequest) {
+       return aRequest.active === true && aRequest.type === "maintenance";
+     });
+     //console.log(JSON.stringify(allStaff));
+     fire.getAllRequestsOffline();
+    return allRequest.length;
+
+
+}
+//get Pending Maintenance requests
+function getCurrentPendingMainte(){
+
+  var allRequest = [];
+  var notestring = fs.readFileSync('./assets/requests.json');
+  var bn = JSON.parse(notestring);
+
+
+  var aRequest = new maintenance.Maintenance();
+
+   allRequest = bn.filter(function (aRequest) {
+     return aRequest.active === false;
+   });
+   //console.log(JSON.stringify(allStaff));
+   fire.getAllRequestsOffline();
+  return allRequest.length;
+
+}
+//get current available staff
+function getCurrentAvailableStaff(){
+
+  var allStaff = [];
+  var notestring = fs.readFileSync('./assets/staff.json');
+  var bn = JSON.parse(notestring);
+
+
+  var astaff = new staff.Users();
+
+   allStaff = bn.filter(function (astaff) {
+     return astaff.presence === true;
+   });
+   //console.log(JSON.stringify(allStaff));
+   fire.getAllStaffOffline();
+  return allStaff.length;
+}
 
 // hbs.registerHelper('getPendingRequests',function () {
 //
@@ -69,11 +156,29 @@ app.get('/add_new_user',function (req,res) {
   res.render('pages/forms.hbs',{
 
     name: "Audax Main Dashboard",
-    username : 'Audax' || 'User'
+    username : 'Audax' || 'User',
+    form_visibility : 0,
+    main_form_visibility : 'hidden'
 
 
   });
 });
+
+app.get('/add_new_request',function (req,res) {
+  res.render('pages/forms.hbs',{
+
+    name: "Audax Main Dashboard",
+    username : 'Audax' || 'User',
+    form_visibility : 'hidden',
+    main_form_visibility : null
+
+
+  });
+});
+
+app.post('/',function (req,res,next) {
+  res.send('It was ayt');
+})
 
 app.listen(2009,function () {
   console.log("Runnning on port : 2009");
