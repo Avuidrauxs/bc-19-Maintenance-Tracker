@@ -72,7 +72,7 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><p id="pending_total">{{randomize100}}</p></div>
+                                    <div class="huge"><p id="pending_total">{{getPendingRequests}}</p></div>
                                     <div>Pending Requests</div>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><span id="maintenance_total">{{getTotalMaintenance}}</span></div>
+                                    <div class="huge"><span id="maintenance_total">{{getTotalMaintenanceRepairs 'mainte'}}</span></div>
                                     <div>Maintenance Requests</div>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                                     <i class="fa fa-shopping-cart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><span id="repair_total">{{randomize100}}</span></div>
+                                    <div class="huge"><span id="repair_total">{{getTotalMaintenanceRepairs}}</span></div>
                                     <div>Repair Requests</div>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@
                                     <i class="fa fa-support fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><span id="delayed_total">{{randomize100}}</span></div>
+                                    <div class="huge"><span id="delayed_total">{{getAvailableStaff}}</span></div>
                                     <div>Available Maintenace Staff</div>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@
                                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
                               </div>
                               <div class="alert alert-info alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="showForm()">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
                                   <button type="button" class="close" data-dismiss="" aria-hidden="">&times;</button>
                                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
                               </div>
@@ -288,7 +288,7 @@
     <script src="views/dist/js/sb-admin-2.js"></script>
   <script>
   function showForm() {
-    var x = document.getElementById('reqForm');
+    var x = document.getElementById('notificat');
 
         x.style.display = 'block';
       }

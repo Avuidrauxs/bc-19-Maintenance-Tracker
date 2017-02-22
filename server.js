@@ -1,7 +1,10 @@
 const express = require('express');
 const hbs = require('hbs');
+
 const fire = require('./lib/firebase');
 
+const staff = require('./models/users');
+const maintenance = require('./models/maintenance')
 var app = express();
 
 //registering partials
@@ -12,9 +15,27 @@ hbs.registerHelper('randomize100',function () {
   return randomize100();
 
 });
-hbs.registerHelper('getTotalMaintenance',function () {
-  //return randomize100();
-  return fire.getTotalMaintenance();
+
+
+//Gets total number of requests
+hbs.registerHelper('getTotalMaintenanceRepairs',function () {
+
+  return fire.getTotalMaintenanceRepairs('maintenance');
+});
+var abb = [2,3,4,5,6];
+//abb = fire.getAvailableStaff();
+var bar = abb.filter(function (staff) {
+  return staff.active === true;
+});
+//Get total available repairmen
+hbs.registerHelper('getAvailableStaff',function () {
+
+  return bar.length
+});
+
+hbs.registerHelper('getPendingRequests',function () {
+
+  return fire.getPendingRequests();
 });
 //set engine for template viewing
 app.set('view engine','hbs');
