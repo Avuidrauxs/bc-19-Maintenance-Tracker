@@ -72,7 +72,7 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><p id="pending_total">{{randomize100}}</p></div>
+                                    <div class="huge"><p id="pending_total">{{getCurrentPendingMainte}}</p></div>
                                     <div>Pending Requests</div>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><span id="maintenance_total">{{randomize100}}</span></div>
+                                    <div class="huge"><span id="maintenance_total">{{getAllCurrentMaintenance}}</span></div>
                                     <div>Maintenance Requests</div>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                                     <i class="fa fa-shopping-cart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><span id="repair_total">{{randomize100}}</span></div>
+                                    <div class="huge"><span id="repair_total">{{getAllCurrentRepairs}}</span></div>
                                     <div>Repair Requests</div>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@
                                     <i class="fa fa-support fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><span id="delayed_total">{{randomize100}}</span></div>
+                                    <div class="huge"><span id="delayed_total">{{getCurrentAvailableStaff}}</span></div>
                                     <div>Available Maintenace Staff</div>
                                 </div>
                             </div>
@@ -169,22 +169,22 @@
                           <!-- /.panel-heading -->
                           <div class="panel-body">
                               <div class="alert alert-info alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="increasePending()">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="decreasePending()">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
                                   <button type="button" class="close" data-dismiss="" aria-hidden="">&times;</button>
                                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
                               </div>
                               <div class="alert alert-info alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="decreasePending()">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
                                   <button type="button" class="close" data-dismiss="" aria-hidden="">&times;</button>
                                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
                               </div>
                               <div class="alert alert-info alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="decreasePending()">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
                                   <button type="button" class="close" data-dismiss="" aria-hidden="">&times;</button>
                                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
                               </div>
                               <div class="alert alert-info alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="showForm()">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="decreasePending()">&check;</button>&nbsp;&nbsp;&nbsp;&nbsp;
                                   <button type="button" class="close" data-dismiss="" aria-hidden="">&times;</button>
                                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
                               </div>
@@ -291,13 +291,28 @@
     var x = document.getElementById('notificat');
 
         x.style.display = 'block';
+        var p = document.getElementById('notificat');
+        var sum = p.innerHTML ;
+        p.innerHTML = ++sum;
+
       }
 
-        function increasePending() {
+        function decreasePending() {
           var p = document.getElementById('pending_total');
           var sum = p.innerHTML ;
-          p.innerHTML = --sum;
+          if(sum > 0){
+              p.innerHTML = --sum;
+              showForm();
+              increaseMaintenance();
+            }
+
         }
+        function increaseMaintenance() {
+          var p = document.getElementById('maintenance_total');
+          var sum = p.innerHTML ;
+          p.innerHTML = ++sum;
+        }
+
 
 
 </script>
