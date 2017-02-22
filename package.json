@@ -23,6 +23,7 @@
     "firebase": "^3.6.9",
     "hbs": "^4.0.1",
     "sync": "^0.2.5",
-    "synchronize": "^2.0.0"
+    "synchronize": "^2.0.0",
+    "textmagic-rest-client": "0.0.5"
   }
 }
