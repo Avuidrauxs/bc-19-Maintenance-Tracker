@@ -2,7 +2,7 @@ const fire = require('./lib/firebase');
 const fs = require('fs');
 
 const staffController = fire.staffController;
-const maintenanceController = fire.maintenanceController;
+
 
 function Users(firstname, lastname, username, passkey, email, role, presence, phone, uid) {
 
@@ -34,7 +34,7 @@ Users.prototype.addNewUser = function(staff, callback) {
   }
 };
 
-User.prototype.getUsers = function(staff) {
+User.prototype.getUsers = function(staff,callback) {
 
   var allStaff = [];
   var notestring = fs.readFileSync('./assets/staff_raw.json');
