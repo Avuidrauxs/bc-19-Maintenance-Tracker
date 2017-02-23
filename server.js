@@ -23,6 +23,12 @@ hbs.registerHelper('getPresentStaffList', function() {
 
 });
 
+//remove pending requests
+hbs.registerHelper('removeRequestOffline', function(title) {
+  return fire.removeRequestOffline(title);
+
+});
+
 //Gets total number of current pending maintenance
 hbs.registerHelper('getCurrentPendingMainte', function() {
 
@@ -61,7 +67,7 @@ function getAllCurrentRepairs(argument) {
     return aRequest.active === true && aRequest.type === "repair";
   });
   //console.log(JSON.stringify(allStaff));
-  fire.getAllRequestsOffline();
+  //fire.getAllRequestsOffline();
   return allRequest.length;
 }
 
@@ -81,7 +87,7 @@ function getAllCurrentMaintenance() {
     return aRequest.active === true && aRequest.type === "maintenance";
   });
   //console.log(JSON.stringify(allStaff));
-  fire.getAllRequestsOffline();
+  //fire.getAllRequestsOffline();
   return allRequest.length;
 
 
@@ -100,15 +106,15 @@ function getCurrentPendingMainte() {
     return aRequest.active === false;
   });
   //console.log(JSON.stringify(allStaff));
-  fire.getAllRequestsOffline();
+  //fire.getAllRequestsOffline();
   return allRequest.length;
 
 }
 
 //get current pending requests
-function getAllPendingRequests(){
+function getAllPendingRequests() {
 
-  var allRequest= [];
+  var allRequest = [];
   var notestring = "";
   notestring = fs.readFileSync('./assets/requests.json');
   // notestring = notestring.toString().replace(/&quot;/g, '"');
@@ -132,7 +138,7 @@ function getCurrentAvailableStaff() {
     return astaff.presence === true;
   });
   //console.log(JSON.stringify(allStaff));
-  fire.getAvailableStaff();
+  //fire.getAvailableStaff();
   return allStaff.length;
 }
 
@@ -175,10 +181,39 @@ app.get('/', function(req, res) {
 
     name: "Audax Main Dashboard",
     username: 'Audax' || 'User',
-    request1 : `${allReq[0].title}================>Type of request: ${allReq[0].type}`,
-    request2 :`${allReq[1].title}================>Type of request: ${allReq[1].type}`,
-    request3 :`${allReq[2].title}================>Type of request: ${allReq[2].type}`,
-    request4 :`${allReq[3].title}================>Type of request: ${allReq[3].type}`,
+    visible: "",
+    variable1: allReq[0],
+    request1: function() {
+      if (allReq[0] === undefined) {
+        this.visible = "hidden";
+      } else {
+        return `${allReq[0].title}================>Type of request: ${allReq[0].type}`
+      }
+    },
+    request2: function() {
+      if (allReq[1] === undefined) {
+        this.visible = "hidden";
+      } else {
+        this.variable1 = allReq[1].title;
+        return `${allReq[1].title}================>Type of request: ${allReq[1].type}`
+      }
+    },
+    request3: function() {
+      if (allReq[2] === undefined) {
+        this.visible = "hidden";
+      } else {
+        this.variable1 = allReq[2].title;
+        return `${allReq[2].title}================>Type of request: ${allReq[2].type}`
+      }
+    },
+    request4: function() {
+      if (allReq[3] === undefined) {
+        this.visible = "hidden";
+      } else {
+        this.variable1 = allReq[3].title;
+        return `${allReq[3].title}================>Type of request: ${allReq[3].type}`
+      }
+    }
 
   });
 });
@@ -186,7 +221,7 @@ app.get('/', function(req, res) {
 app.get('/user', function(req, res) {
   res.render('user.hbs', {
 
-    name: req.body.username+" Main Dashboard",
+    name: req.body.username + " Main Dashboard",
     username: req.body.username || 'User'
 
 
@@ -196,7 +231,7 @@ app.get('/user', function(req, res) {
 app.get('/user/add_new_request', function(req, res) {
   res.render('pages/userforms.hbs', {
 
-    name: req.body.username+" Main Dashboard",
+    name: req.body.username + " Main Dashboard",
     username: req.body.username || 'User'
 
 
@@ -267,20 +302,17 @@ app.get('/uadd_new_request', function(req, res) {
 
 //Authenticate Login
 app.post('/auth', function(req, res) {
-    if(req.body.username === "admin" && req.body.password === "admin")
-    {
-      res.redirect('/');
+  if (req.body.username === "admin" && req.body.password === "admin") {
+    res.redirect('/');
 
-    }
-    else if (req.body.username === "user" && req.body.password === "user")
-    {
-      res.redirect('/user');
+  } else if (req.body.username === "user" && req.body.password === "user") {
+    res.redirect('/user');
 
-      //res.render('user.hbs')
-    }else{
-      //res.send('alert("Wrong")');
-      res.render('pages/login.hbs')
-    }
+    //res.render('user.hbs')
+  } else {
+    //res.send('alert("Wrong")');
+    res.render('pages/login.hbs')
+  }
 });
 app.post('/banana', function(req, res, next) {
   res.send(`Title :${req.body.reqTitle} \n
