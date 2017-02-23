@@ -5,7 +5,7 @@ const maintenanceController = fire.maintenanceController;
 
 
 
-function Maintenance(id, title, datetime, repairer_name, priorty, type, active, comments, imgURL) {
+function Maintenance(id, title, datetime, repairer_name, priorty, type, active, comments, imgURL,fKey) {
 
   this.id = id;
   this.title = title;
@@ -16,6 +16,7 @@ function Maintenance(id, title, datetime, repairer_name, priorty, type, active, 
   this.active = active;
   this.comments = comments;
   this.imgURL = imgURL;
+  this.fKey = fKey;
 
 }
 
@@ -37,6 +38,7 @@ Maintenance.prototype.removeRequest = function(title, callback) {
 Maintenance.prototype.editRequest = function(title, callback) {
   // body...
 };
+
 module.exports = {
   Maintenance
 }
