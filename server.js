@@ -175,11 +175,10 @@ app.get('/', function(req, res) {
 
     name: "Audax Main Dashboard",
     username: 'Audax' || 'User',
-    request1 : `${allReq[0].title}    Type of reques: ${allReq[0].type}`,
-    request2 :`${allReq[1].title}    Type of reques: ${allReq[1].type}`,
-    request3 :`${allReq[2].title}    Type of reques: ${allReq[2].type}`,
-    request4 :`${allReq[3].title}    Type of reques: ${allReq[3].type}`,
-
+    request1 : `${allReq[0].title}================>Type of request: ${allReq[0].type}`,
+    request2 :`${allReq[1].title}================>Type of request: ${allReq[1].type}`,
+    request3 :`${allReq[2].title}================>Type of request: ${allReq[2].type}`,
+    request4 :`${allReq[3].title}================>Type of request: ${allReq[3].type}`,
 
   });
 });
