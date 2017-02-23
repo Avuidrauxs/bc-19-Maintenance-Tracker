@@ -314,6 +314,7 @@ app.post('/auth', function(req, res) {
     res.render('pages/login.hbs')
   }
 });
+//save new request
 app.post('/banana', function(req, res, next) {
   res.send(`Title :${req.body.reqTitle} \n
             Date : ${req.body.reqDate}\n
