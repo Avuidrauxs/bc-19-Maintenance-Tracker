@@ -36,7 +36,7 @@
 
 </head>
 
-<body>
+<body onload="loadStaff()">
 
   <div id="wrapper">
     <!-- Navigation -->
@@ -86,28 +86,7 @@
                         <input class="form-control" placeholder="Enter Title" name="reqTitle">
                         <p class="help-block">Example "John Dogo".</p>
                       </div>
-                      <div class="form-group">
-                        <div class='input-group date' id='datetimepicker5'>
-                          <input type='text' class="form-control" name="reqDate" placeholder="MM/DD/YYYY" />
-                          <span class="input-group-addon">
-                                                   <span class="glyphicon glyphicon-calendar"></span>
-                          </span>
-                        </div>
-                      </div>
-                  </div>
-                  <script type="text/javascript">
-                    $(function() {
-                      $('#datetimepicker5').datetimepicker({
-                        defaultDate: "11/1/2013",
-                        disabledDates: [
-                          moment("12/25/2013"),
-                          new Date(2013, 11 - 1, 21),
-                          "11/22/2013 00:53"
-                        ]
-                      });
-                    });
-                  </script>
-                </div>
+
                 <div class="form-group">
                   <label>Static Control</label>
                   <p class="form-control-static">email@example.com</p>
@@ -135,8 +114,8 @@
                 </div>
                 <div class="form-group">
                   <label>Select Repair Staff</label>
-                  <select class="form-control" id="staffSelect" onclick="loadStaff()">
-                    <option id="reqStaff">&nbsp;</option>
+                  <select class="form-control" id="staffSelect" >
+                    <option value="John Dogo">User</option>
 
                   </select>
                 </div>
@@ -265,20 +244,18 @@
 
   <script>
     function loadStaff() {
-
-      var cuisines = [{
-        {
-          allStaff
+      $.getJSON('assets/staff_raw.json', function(data) {
+        //var items = [];
+        var sel = document.getElementById('staffSelect');
+        for (staff in data) {
+          var opt = document.createElement('option');
+          opt.value = data[staff].staff.username.toString();
+          opt.name = data[staff].staff.username.toString();
+          //alert(data[staff].staff.username)
+          sel.appendChild(opt);
         }
-      }];
+      });
 
-      var sel = document.getElementById('staffSelect');
-      for (var i = 0; i < cuisines.length; i++) {
-        var opt = document.createElement('option');
-        opt.innerHTML = cuisines[i];
-        opt.value = cuisines[i];
-        sel.appendChild(opt);
-      }
     }
   </script>
 
