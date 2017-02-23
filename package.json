@@ -26,6 +26,7 @@
     "sync": "^0.2.5",
     "synchronize": "^2.0.0",
     "textmagic-rest-client": "0.0.5",
+    "twilio": "^2.11.1",
     "underscore": "^1.8.3"
   }
 }
