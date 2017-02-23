@@ -104,6 +104,20 @@ function getCurrentPendingMainte() {
   return allRequest.length;
 
 }
+
+//get current pending requests
+function getAllPendingRequests(){
+
+  var allRequest= [];
+  var notestring = "";
+  notestring = fs.readFileSync('./assets/requests.json');
+  // notestring = notestring.toString().replace(/&quot;/g, '"');
+  allRequest = JSON.parse(notestring);
+  // allStaff.forEach(staff => { console.log(_.pick(allStaff, ['username']))});
+  //  return JSON.stringify(allStaff);
+  return allRequest;
+
+}
 //get current available staff
 function getCurrentAvailableStaff() {
 
@@ -153,13 +167,18 @@ app.use(express.static(__dirname + '/'));
 //     res.render('pages/blank.hbs');
 //
 // });
-//routing to pages
 
+//routing to pages
 app.get('/', function(req, res) {
+  allReq = getAllPendingRequests();
   res.render('index.hbs', {
 
     name: "Audax Main Dashboard",
-    username: 'Audax' || 'User'
+    username: 'Audax' || 'User',
+    request1 : `${allReq[0].title}    Type of reques: ${allReq[0].type}`,
+    request2 :`${allReq[1].title}    Type of reques: ${allReq[1].type}`,
+    request3 :`${allReq[2].title}    Type of reques: ${allReq[2].type}`,
+    request4 :`${allReq[3].title}    Type of reques: ${allReq[3].type}`,
 
 
   });
@@ -188,6 +207,11 @@ app.get('/user/add_new_request', function(req, res) {
 app.get('/login', function(req, res) {
   res.render('pages/login.hbs');
 });
+
+app.get('/logout', function(req, res) {
+  res.render('pages/login.hbs');
+});
+
 
 
 app.get('/blank', function(req, res) {
@@ -227,7 +251,38 @@ app.get('/add_new_request', function(req, res) {
 
   });
 });
+app.get('/uadd_new_request', function(req, res) {
 
+  res.render('pages/userforms.hbs', {
+
+    name: "User Main Dashboard",
+    username: 'User',
+    form_visibility: 'hidden',
+    main_form_visibility: null,
+    staffObject: new staff.Users(),
+    allStaff: arr
+
+
+  });
+});
+
+//Authenticate Login
+app.post('/auth', function(req, res) {
+    if(req.body.username === "admin" && req.body.password === "admin")
+    {
+      res.redirect('/');
+
+    }
+    else if (req.body.username === "user" && req.body.password === "user")
+    {
+      res.redirect('/user');
+
+      //res.render('user.hbs')
+    }else{
+      //res.send('alert("Wrong")');
+      res.render('pages/login.hbs')
+    }
+});
 app.post('/banana', function(req, res, next) {
   res.send(`Title :${req.body.reqTitle} \n
             Date : ${req.body.reqDate}\n
