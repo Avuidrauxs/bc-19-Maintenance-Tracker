@@ -174,8 +174,8 @@
                                         <th>Repairer name</th>
                                         <th>Type</th>
                                         <th>Priorty</th>
-                                        <th>Comments</th>
-                                        
+                                        <th>Operations</th>
+
                                     </tr>
                                 </thead>
                                 <!--
@@ -762,7 +762,8 @@ $.getJSON('assets/requests.json',function(data){
       items.push("<td id="+key+">"+val.repairer_name+"</td>");
       items.push("<td id="+key+">"+val.type+"</td>");
       items.push("<td id="+key+">"+val.priorty+"</td>");
-      items.push("<td id="+key+">"+val.comments+"</td>");
+      items.push("<td><button type='button' class='btn btn-primary'>Approve</button>&nbsp;<button type=button class='btn btn-danger'>Reject</button></td>");
+      //items.push("<td id="+key+">"+val.comments+ "</td>");
     items.push("</tr>");
   });
   $('<tbody/>',{html: items.join("")}).appendTo("table")

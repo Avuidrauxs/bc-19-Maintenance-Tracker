@@ -165,6 +165,26 @@ app.get('/', function(req, res) {
   });
 });
 
+app.get('/user', function(req, res) {
+  res.render('user.hbs', {
+
+    name: req.body.username+" Main Dashboard",
+    username: req.body.username || 'User'
+
+
+  });
+});
+
+app.get('/user/add_new_request', function(req, res) {
+  res.render('pages/userforms.hbs', {
+
+    name: req.body.username+" Main Dashboard",
+    username: req.body.username || 'User'
+
+
+  });
+});
+
 app.get('/login', function(req, res) {
   res.render('pages/login.hbs');
 });
