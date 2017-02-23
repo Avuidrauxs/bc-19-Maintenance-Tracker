@@ -251,11 +251,11 @@ app.post('/welcome', function(req, res, next) {
 
   if (duplicates.length === 0) {
     tempArray.push(astaff);
-    fs.writeFileSync("./assets/staff.json",JSON.stringify(tempArray));
+    fs.writeFileSync("./assets/staff.json", JSON.stringify(tempArray));
     fire.saveNewStaff(astaff);
     sendSMS(astaff);
     res.send("Sent");
-  }else {
+  } else {
     res.send("Not sent");
   }
 });
