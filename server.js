@@ -18,10 +18,10 @@ var client = require('twilio')('AC091131669be0f4199fb5066ac999a618', '2f2dfc3b66
 hbs.registerPartials(__dirname + '/views/partials');
 
 //registr helper to run functions
-hbs.registerHelper('getPresentStaffList', function() {
-  return getPresentStaffList();
-
-});
+// hbs.registerHelper('getPresentStaffList', function() {
+//   return getPresentStaffList();
+//
+// });
 
 //remove pending requests
 hbs.registerHelper('removeRequestOffline', function(title) {
@@ -32,126 +32,27 @@ hbs.registerHelper('removeRequestOffline', function(title) {
 //Gets total number of current pending maintenance
 hbs.registerHelper('getCurrentPendingMainte', function() {
 
-  return getCurrentPendingMainte();
+  return fire.getAllRequestsOffline();
 });
 
 //Get all maintenance requests
 hbs.registerHelper('getAllCurrentMaintenance', function() {
 
-  return getAllCurrentMaintenance();
+  return fire.getAllCurrentMaintenance();
 });
 
 //Get total available repairmen
 hbs.registerHelper('getCurrentAvailableStaff', function() {
 
-  return getCurrentAvailableStaff();
+  return fire.getAllStaffOffline();
 });
 
 //Get total repair requests in view
 hbs.registerHelper('getAllCurrentRepairs', function() {
 
-  return getAllCurrentRepairs();
+  return fire.getAllCurrentRepairs();
 });
 
-//Get all Repair requests
-function getAllCurrentRepairs(argument) {
-
-  var allRequest = [];
-  var notestring = fs.readFileSync('./assets/requests.json');
-  var bn = JSON.parse(notestring);
-
-
-  var aRequest = new maintenance.Maintenance();
-
-  allRequest = bn.filter(function(aRequest) {
-    return aRequest.active === true && aRequest.type === "repair";
-  });
-  //console.log(JSON.stringify(allStaff));
-  //fire.getAllRequestsOffline();
-  return allRequest.length;
-}
-
-
-//get all Maintenance requests
-
-function getAllCurrentMaintenance() {
-
-  var allRequest = [];
-  var notestring = fs.readFileSync('./assets/requests.json');
-  var bn = JSON.parse(notestring);
-
-
-  var aRequest = new maintenance.Maintenance();
-
-  allRequest = bn.filter(function(aRequest) {
-    return aRequest.active === true && aRequest.type === "maintenance";
-  });
-  //console.log(JSON.stringify(allStaff));
-  //fire.getAllRequestsOffline();
-  return allRequest.length;
-
-
-}
-//get Pending Maintenance requests
-function getCurrentPendingMainte() {
-
-  var allRequest = [];
-  var notestring = fs.readFileSync('./assets/requests.json');
-  var bn = JSON.parse(notestring);
-
-
-  var aRequest = new maintenance.Maintenance();
-
-  allRequest = bn.filter(function(aRequest) {
-    return aRequest.active === false;
-  });
-  //console.log(JSON.stringify(allStaff));
-  //fire.getAllRequestsOffline();
-  return allRequest.length;
-
-}
-
-//get current pending requests
-function getAllPendingRequests() {
-
-  var allRequest = [];
-  var notestring = "";
-  notestring = fs.readFileSync('./assets/requests.json');
-  // notestring = notestring.toString().replace(/&quot;/g, '"');
-  allRequest = JSON.parse(notestring);
-  // allStaff.forEach(staff => { console.log(_.pick(allStaff, ['username']))});
-  //  return JSON.stringify(allStaff);
-  return allRequest;
-
-}
-//get current available staff
-function getCurrentAvailableStaff() {
-
-  var allStaff = [];
-  var notestring = fs.readFileSync('./assets/staff.json');
-  var bn = JSON.parse(notestring);
-
-
-  var astaff = new staff.Users();
-
-  allStaff = bn.filter(function(astaff) {
-    return astaff.presence === true;
-  });
-  //console.log(JSON.stringify(allStaff));
-  //fire.getAvailableStaff();
-  return allStaff.length;
-}
-
-function getPresentStaffList() {
-  var allStaff = [];
-  var notestring = "";
-  notestring = fs.readFileSync('./assets/staff.json');
-  // notestring = notestring.toString().replace(/&quot;/g, '"');
-  allStaff = JSON.parse(notestring);
-  // allStaff.forEach(staff => { console.log(_.pick(allStaff, ['username']))});
-  //  return JSON.stringify(allStaff);
-  return allStaff
-}
 // getPresentStaffList();
 // hbs.registerHelper('getPendingRequests',function () {
 //
@@ -176,46 +77,16 @@ app.use(express.static(__dirname + '/'));
 
 //routing to pages
 app.get('/', function(req, res) {
-  allReq = getAllPendingRequests();
+
   res.render('index.hbs', {
 
     name: "Audax Main Dashboard",
     username: 'Audax' || 'User',
-    visible: "",
-    variable1: allReq[0],
-    request1: function() {
-      if (allReq[0] === undefined) {
-        this.visible = "hidden";
-      } else {
-        return `${allReq[0].title}================>Type of request: ${allReq[0].type}`
-      }
-    },
-    request2: function() {
-      if (allReq[1] === undefined) {
-        this.visible = "hidden";
-      } else {
-        this.variable1 = allReq[1].title;
-        return `${allReq[1].title}================>Type of request: ${allReq[1].type}`
-      }
-    },
-    request3: function() {
-      if (allReq[2] === undefined) {
-        this.visible = "hidden";
-      } else {
-        this.variable1 = allReq[2].title;
-        return `${allReq[2].title}================>Type of request: ${allReq[2].type}`
-      }
-    },
-    request4: function() {
-      if (allReq[3] === undefined) {
-        this.visible = "hidden";
-      } else {
-        this.variable1 = allReq[3].title;
-        return `${allReq[3].title}================>Type of request: ${allReq[3].type}`
-      }
+    visible: ""
+
     }
 
-  });
+  );
 });
 
 app.get('/user', function(req, res) {
@@ -265,10 +136,6 @@ app.get('/add_new_user', function(req, res) {
 });
 
 
-var i = 0;
-var arr = getPresentStaffList().map(function(staff) {
-  return `${staff.username}`;
-});
 
 
 app.get('/add_new_request', function(req, res) {
@@ -280,7 +147,7 @@ app.get('/add_new_request', function(req, res) {
     form_visibility: 'hidden',
     main_form_visibility: null,
     staffObject: new staff.Users(),
-    allStaff: arr
+
 
 
   });
@@ -293,8 +160,8 @@ app.get('/uadd_new_request', function(req, res) {
     username: 'User',
     form_visibility: 'hidden',
     main_form_visibility: null,
-    staffObject: new staff.Users(),
-    allStaff: arr
+    staffObject: new staff.Users()
+
 
 
   });
@@ -315,13 +182,8 @@ app.post('/auth', function(req, res) {
   }
 });
 //save new request
-app.post('/banana', function(req, res, next) {
-  res.send(`Title :${req.body.reqTitle} \n
-            Date : ${req.body.reqDate}\n
-            imgURL :     ${req.body.reqimgURL}\n
-            Comments  :    ${req.body.reqComment}\n
-            Priorty  :    ${req.body.reqPriorty}\n
-            Type :      ${req.body.reqType}`);
+app.post('/success', function(req, res, next) {
+  res.send();
   var mainte = new maintenance.Maintenance(
     req.body.reqID,
     req.body.reqTitle,
@@ -331,11 +193,13 @@ app.post('/banana', function(req, res, next) {
     req.body.reqType,
     false,
     req.body.reqComment,
-    req.body.reqimgURL
+    req.body.reqimgURL,
+    null
   );
   fire.saveNewMaintenanceRequest(mainte);
   //req.body.reqStaff
 });
+//Request save ends here
 
 //SAVES NEW STAFF
 app.post('/welcome', function(req, res, next) {
