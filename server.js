@@ -11,6 +11,8 @@ const maintenance = require('./models/maintenance')
 var app = express();
 const _ = require('underscore')
 
+var port = process.env.PORT || 2009;
+
 
 var client = require('twilio')('AC091131669be0f4199fb5066ac999a618', '2f2dfc3b66a8dc580c92b15273e83679');
 
@@ -24,18 +26,44 @@ hbs.registerPartials(__dirname + '/views/partials');
 // });
 
 //remove pending requests
-hbs.registerHelper('deleteManRep', function(){
+hbs.registerHelper('deleteManRep', function() {
 
 
-    var data = JSON.parse(fs.readFileSync('./assets/requests_raw.json'));
+  var data = JSON.parse(fs.readFileSync('./assets/requests_raw.json'));
+  var daff;
+  for (staffs in data) {
 
+
+    daff = staffs;
+
+  }
+  return fire.deleteManRep(daff);
 
 
   //console.log(mant_uid);
 
 });
 
-hbs.registerHelper('updateManRep',function(str){
+
+//update pending requests
+hbs.registerHelper('updateManRep', function() {
+
+
+  var data = JSON.parse(fs.readFileSync('./assets/requests_raw.json'));
+
+  for (staffs in data) {
+
+    if (data[staffs].mainte.active === false) {
+      return fire.updateManRep(staffs);
+    }
+
+
+  }
+
+
+});
+
+hbs.registerHelper('updateManRep', function(str) {
 
   return fire.updateManRep(str);
 });
@@ -92,9 +120,9 @@ app.get('/', function(req, res) {
 
   res.render('index.hbs', {
 
-    name: "Audax Main Dashboard",
-    username: 'Audax' || 'User',
-    visible: ""
+      name: "Audax Main Dashboard",
+      username: 'Audax' || 'User',
+      visible: ""
 
     }
 
@@ -140,8 +168,8 @@ app.get('/add_new_user', function(req, res) {
 
     name: "Audax Main Dashboard",
     username: 'Audax' || 'User',
-    form_visibility: 0,
-    main_form_visibility: 'hidden'
+    form_visibility: null,
+    main_form_visibility: ''
 
 
   });
@@ -212,20 +240,19 @@ app.post('/success', function(req, res, next) {
 
 
   );
-  if(!fire.duplicateRequests(req.body.reqID)){
-  fire.saveNewMaintenanceRequest(mainte);
-  res.send("<html><script>alert('New user saved')</script></html>");
-  res.redirect('/');
-}
-else{
+  if (!fire.duplicateRequests(req.body.reqID)) {
+    fire.saveNewMaintenanceRequest(mainte);
+    res.send("<html><script>alert('New user saved')</script></html>");
+    res.redirect('/');
+  } else {
 
-res.send("<html><script>alert('Save failed')</script></html>");
-res.redirect('/add_new_request')
-}
+    res.send("<html><script>alert('Save failed')</script></html>");
+    res.redirect('/add_new_request')
+  }
   //req.body.reqStaff
 });
 
-app.get('/ben?str=faaaa',function(req,res,nexr){
+app.get('/ben?str=faaaa', function(req, res, nexr) {
 
   res.send(req.params('str'));
 
@@ -243,20 +270,22 @@ app.post('/main_request', function(req, res, next) {
     "Kwaku",
     req.body.reqPriorty,
     req.body.reqType,
-    false,
     req.body.reqComment,
     req.body.reqimgURL,
-    null
+    null,
+    false,
+    false,
+    new Date().getTime()
   );
-  if(!fire.duplicateRequests(req.body.reqID)){
-  fire.saveNewMaintenanceRequest(mainte);
-  res.send("<html><script>alert('New user saved')</script></html>");
-  res.redirect('/user');
-  }
-  else{
+  if (!fire.duplicateRequests(req.body.reqID)) {
+    fire.saveNewMaintenanceRequest(mainte);
+    res.send("SENT");
+    res.redirect('/user');
+  } else {
 
-//  res.send("<html><script>alert('Save failed')</script></html>");
-  res.redirect('/uadd_new_request')
+    //  res.send("<html><script>alert('Save failed')</script></html>");
+    res.send(" NOT SENT");
+    res.redirect('/user')
   }
 
   //req.body.reqStaff
@@ -272,7 +301,7 @@ app.post('/new_staff', function(req, res, next) {
   var astaff = new staff.Users(req.body.fname,
     req.body.lname,
     req.body.uname,
-    pass,
+    'pass',
     req.body.email,
     req.body.role,
     req.body.presence,
@@ -282,24 +311,24 @@ app.post('/new_staff', function(req, res, next) {
 
 
 
-  if(!fire.duplicateStaff(req.body.uname))
-{    fire.saveNewStaff(astaff);
+  if (!fire.duplicateStaff(req.body.uname)) {
+    fire.saveNewStaff(astaff);
     sendSMS(astaff.phone);
-    res.send("<html><script>alert('New user saved')</script></html>");
+    res.send("SENT");
     res.redirect('/')
-}else{
+  } else {
 
-  //res.send("<html><script>alert('Save failed')</script></html>");
-  res.redirect('/add_new_user')
-}
+    //res.send("<html><script>alert('Save failed')</script></html>");
+    res.redirect('/add_new_user')
+  }
 });
 '+2348073021620'
 
 function sendSMS(staff) {
   client.messages.create({
     from: '+15409083889',
-    to: staff.phone,
-    body: `${staff.username}, a maintenance task has been assigned to you`
+    to: '+2348073021620',
+    body: `${staff}, a maintenance task has been assigned to you`
   }, function(err, message) {
     if (err) {
       console.error('Error ' + err.message);

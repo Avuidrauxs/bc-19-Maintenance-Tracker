@@ -34,10 +34,10 @@ After cloning the project run `NPM INSTALL`
 npm install
 ```
 
-And finally you run `NPM SCRIPT` to start the server on port `2009`
+And finally you run `NPM START` to start the server on port `2009`
 
 ```
-npm script
+npm start
 ```
 
 Open your browser and type in the address bar `localhost:2009`
