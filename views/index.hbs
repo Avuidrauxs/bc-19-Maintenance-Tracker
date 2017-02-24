@@ -317,33 +317,7 @@
               <div class="panel-heading">
                 Pending Maintenance and Repairs
               </div>
-              <!-- /.panel-heading -->
-              <div class="panel-body">
-                <div class="alert alert-info alert-dismissable" {{visible}}>
 
-                  <button type=button class='btn btn-danger' data-dismiss="alert" onclick="{{removeRequestOffline " {{variable1}} " }} ;redecreasePending();alert({{variable1}})">Reject</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <button type='button' class='btn btn-primary' data-dismiss="alert" onclick="decreasePending()">Approve</button>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <h4>    {{request1}}  </h4>
-                </div>
-                <div class="alert alert-info alert-dismissable" {{visible}}>
-                  <button type=button class='btn btn-danger' data-dismiss="alert" onclick="{{removeRequestOffline " {{variable1}} " }} ;redecreasePending()">Reject</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <button type='button' class='btn btn-primary' data-dismiss="alert" onclick="decreasePending()">Approve</button>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <h4>  {{request2}} </h4>
-                </div>
-                <div class="alert alert-info alert-dismissable" {{visible}}>
-                  <button type=button class='btn btn-danger' data-dismiss="alert" onclick="{{removeRequestOffline " {{variable1}} " }} ;redecreasePending()">Reject</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <button type='button' class='btn btn-primary' data-dismiss="alert" onclick="decreasePending()">Approve</button>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <h4>    {{request3}}  </h4>
-                </div>
-                <div class="alert alert-info alert-dismissable" {{visible}}>
-                  <button type=button class='btn btn-danger' data-dismiss="alert" onclick="{{removeRequestOffline " {{variable1}} " }} ;redecreasePending()">Reject</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <button type='button' class='btn btn-primary' data-dismiss="alert" onclick="decreasePending()">Approve</button>
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <h4>  {{request4}}  </h4>
-                </div>
               </div>
               <!-- .panel-body -->
             </div>
@@ -500,7 +474,7 @@
               // get the current row
               var currentRow = $(this).closest("tr");
 
-              var col1 = currentRow.find("td:eq(0)").text(); // get current row 1st TD value
+              var col1 = currentRow.find("td:eq(0)").id(); // get current row 1st TD value
               var col2 = currentRow.find("td:eq(1)").text(); // get current row 2nd TD
               var col3 = currentRow.find("td:eq(2)").text(); // get current row 3rd TD
               var data1 = col1 + "\n" + col2 + "\n" + col3;
@@ -609,12 +583,13 @@
                   // get the current row
                   var currentRow = $(this).closest("tr");
 
-                  var col1 = currentRow.find("td:eq(0)").text(); // get current row 1st TD value
-                  var col2 = currentRow.find("td:eq(1)").text(); // get current row 2nd TD
-                  var col3 = currentRow.find("td:eq(2)").text(); // get current row 3rd TD
-                  var data1 = col1 + "\n" + col2 + "\n" + col3;
+                  var col1 = currentRow.find("td:eq(0)").attr("id"); // get current row 1st TD value
+                  var col2 = currentRow.find("td:eq(0)").text(); // get current row 2nd TD
 
-                  alert(data1);
+                  var data1 = col2 + "  deleted";
+
+                
+                                 alert(data1+"   "+col1);
                 });
               });
 

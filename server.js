@@ -24,9 +24,20 @@ hbs.registerPartials(__dirname + '/views/partials');
 // });
 
 //remove pending requests
-hbs.registerHelper('removeRequestOffline', function(title) {
-  return fire.removeRequestOffline(title);
+hbs.registerHelper('deleteManRep', function(){
 
+
+    var data = JSON.parse(fs.readFileSync('./assets/requests_raw.json'));
+
+
+
+  //console.log(mant_uid);
+
+});
+
+hbs.registerHelper('updateManRep',function(str){
+
+  return fire.updateManRep(str);
 });
 
 //Gets total number of current pending maintenance
@@ -78,6 +89,7 @@ app.use(express.static(__dirname + '/'));
 //routing to pages
 app.get('/', function(req, res) {
 
+
   res.render('index.hbs', {
 
     name: "Audax Main Dashboard",
@@ -99,15 +111,15 @@ app.get('/user', function(req, res) {
   });
 });
 
-app.get('/user/add_new_request', function(req, res) {
-  res.render('pages/userforms.hbs', {
-
-    name: req.body.username + " Main Dashboard",
-    username: req.body.username || 'User'
-
-
-  });
-});
+// app.get('/user/add_new_request', function(req, res) {
+//   res.render('pages/userforms.hbs', {
+//
+//     name: req.body.username + " Main Dashboard",
+//     username: req.body.username || 'User'
+//
+//
+//   });
+// });
 
 app.get('/login', function(req, res) {
   res.render('pages/login.hbs');
@@ -187,7 +199,47 @@ app.post('/success', function(req, res, next) {
   var mainte = new maintenance.Maintenance(
     req.body.reqID,
     req.body.reqTitle,
-    req.body.reqDate,
+    "Repairman 1",
+    req.body.reqPriorty,
+    req.body.reqType,
+    req.body.reqComment,
+    req.body.reqimgURL,
+    null,
+    false,
+    false,
+    new Date().getTime()
+
+
+
+  );
+  if(!fire.duplicateRequests(req.body.reqID)){
+  fire.saveNewMaintenanceRequest(mainte);
+  res.send("<html><script>alert('New user saved')</script></html>");
+  res.redirect('/');
+}
+else{
+
+res.send("<html><script>alert('Save failed')</script></html>");
+res.redirect('/add_new_request')
+}
+  //req.body.reqStaff
+});
+
+app.get('/ben?str=faaaa',function(req,res,nexr){
+
+  res.send(req.params('str'));
+
+});
+
+
+
+//Request save ends here
+//SAVE REQUEST BEGINS
+app.post('/main_request', function(req, res, next) {
+  res.send();
+  var mainte = new maintenance.Maintenance(
+    req.body.reqID,
+    req.body.reqTitle,
     "Kwaku",
     req.body.reqPriorty,
     req.body.reqType,
@@ -196,15 +248,26 @@ app.post('/success', function(req, res, next) {
     req.body.reqimgURL,
     null
   );
+  if(!fire.duplicateRequests(req.body.reqID)){
   fire.saveNewMaintenanceRequest(mainte);
+  res.send("<html><script>alert('New user saved')</script></html>");
+  res.redirect('/user');
+  }
+  else{
+
+//  res.send("<html><script>alert('Save failed')</script></html>");
+  res.redirect('/uadd_new_request')
+  }
+
   //req.body.reqStaff
 });
-//Request save ends here
+
+
 
 //SAVES NEW STAFF
-app.post('/welcome', function(req, res, next) {
-  var pass = bcrypt.hashSync(req.body.email, 5);
-  var tempArray = fire.getAllStaffOffline();
+app.post('/new_staff', function(req, res, next) {
+
+
   var istaff = new staff.Users();
   var astaff = new staff.Users(req.body.fname,
     req.body.lname,
@@ -216,19 +279,19 @@ app.post('/welcome', function(req, res, next) {
     req.body.phone,
     "0000ffff"
   );
-  var duplicates = tempArray.filter(function(istaff) {
-    return istaff.username === astaff.username
-  });
 
-  if (duplicates.length === 0) {
-    tempArray.push(astaff);
-    fs.writeFileSync("./assets/staff.json", JSON.stringify(tempArray));
-    fire.saveNewStaff(astaff);
-    sendSMS(astaff);
-    res.send("Sent");
-  } else {
-    res.send("Not sent");
-  }
+
+
+  if(!fire.duplicateStaff(req.body.uname))
+{    fire.saveNewStaff(astaff);
+    sendSMS(astaff.phone);
+    res.send("<html><script>alert('New user saved')</script></html>");
+    res.redirect('/')
+}else{
+
+  //res.send("<html><script>alert('Save failed')</script></html>");
+  res.redirect('/add_new_user')
+}
 });
 '+2348073021620'
 
