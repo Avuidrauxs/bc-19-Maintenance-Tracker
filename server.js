@@ -169,7 +169,7 @@ app.get('/add_new_user', function(req, res) {
     name: "Audax Main Dashboard",
     username: 'Audax' || 'User',
     form_visibility: null,
-    main_form_visibility: ''
+    main_form_visibility: 'hidden'
 
 
   });
