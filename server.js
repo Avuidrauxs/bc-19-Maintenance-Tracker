@@ -313,7 +313,7 @@ app.post('/new_staff', function(req, res, next) {
 
   if (!fire.duplicateStaff(req.body.uname)) {
     fire.saveNewStaff(astaff);
-    sendSMS(req.body,uname);
+    sendSMS(req.body.uname);
     res.send("SENT");
     res.redirect('/')
   } else {
