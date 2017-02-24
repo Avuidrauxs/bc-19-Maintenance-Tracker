@@ -313,7 +313,7 @@ app.post('/new_staff', function(req, res, next) {
 
   if (!fire.duplicateStaff(req.body.uname)) {
     fire.saveNewStaff(astaff);
-    sendSMS(astaff);
+    sendSMS(req.body,uname);
     res.send("SENT");
     res.redirect('/')
   } else {
@@ -322,12 +322,12 @@ app.post('/new_staff', function(req, res, next) {
     res.redirect('/add_new_user')
   }
 });
-'+2348073021620'
+// '+2348073021620'
 
 function sendSMS(staff) {
   client.messages.create({
     from: '+15409083889',
-    to: staff.phone,
+    to:'+2348073021620',
     body: `${staff}, a maintenance task has been assigned to you`
   }, function(err, message) {
     if (err) {

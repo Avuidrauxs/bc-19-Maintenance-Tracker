@@ -497,7 +497,7 @@
       //  $.each(data, function(key, val) {
       for (staff in data) {
         //data[staff].mainte.fKey = staff;
-        if (data[staff].mainte.active === true && data[staff].mainte.type === "maintenance") {
+        if (data[staff].mainte.active === true  && data[staff].mainte.type === "maintenance") {
           items.push("<tr>");
           items.push("<td id=" + staff + ">" + data[staff].mainte.title + "</td>");
           items.push("<td id=" + staff + ">" + data[staff].mainte.date + "</td>");
@@ -553,7 +553,7 @@
       //  $.each(data, function(key, val) {
       for (staff in data) {
         //data[staff].mainte.fKey = staff;
-        if (data[staff].mainte.active === false) {
+        if (data[staff].mainte.active === false || data[staff].mainte.active === "false"  ) {
           items.push("<tr>");
           items.push("<td id=" + staff + ">" + data[staff].mainte.title + "</td>");
           items.push("<td id=" + staff + ">" + data[staff].mainte.date + "</td>");
@@ -591,6 +591,12 @@
           var col2 = currentRow.find("td:eq(0)").text(); // get current row 2nd TD
 
           var data1 = col2 + "  deleted";
+
+          // var gdd = document.getElementById(col);
+          // gdd.style.display = "none";
+
+          var gdd = document.getElementById("dataTables-example1").getElementById(col1);
+          gdd.style.display = "none";
           {{deleteManRep}}
 
           alert("REQUEST DELETED");
