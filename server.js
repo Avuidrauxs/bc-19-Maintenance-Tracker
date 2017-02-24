@@ -313,7 +313,7 @@ app.post('/new_staff', function(req, res, next) {
 
   if (!fire.duplicateStaff(req.body.uname)) {
     fire.saveNewStaff(astaff);
-    sendSMS(astaff.phone);
+    sendSMS(astaff);
     res.send("SENT");
     res.redirect('/')
   } else {
@@ -327,7 +327,7 @@ app.post('/new_staff', function(req, res, next) {
 function sendSMS(staff) {
   client.messages.create({
     from: '+15409083889',
-    to: '+2348073021620',
+    to: staff.phone,
     body: `${staff}, a maintenance task has been assigned to you`
   }, function(err, message) {
     if (err) {
