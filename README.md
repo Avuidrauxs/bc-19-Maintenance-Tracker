@@ -40,31 +40,12 @@ And finally you run `NPM SCRIPT` to start the server on port `2009`
 npm script
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Open your browser and type in the address bar `localhost:2009`
 
 ## Running the tests
 
 Due to time constraints couldn't run tests
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
